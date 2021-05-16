@@ -85,7 +85,6 @@ public class AllergenResult extends AppCompatActivity {
                     }
                 }
                 badIngredients.set(resultText(allergenIngredientsMap));
-                System.out.printf("list of badIngredients = %s\n", badIngredients.get());
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
                 resultFromFoodFacts = e.toString();
@@ -137,10 +136,10 @@ public class AllergenResult extends AppCompatActivity {
 
     private String resultText(HashMap<String, ArrayList<String>> allergenIngredientsMap) {
         if (allergenIngredientsMap.size() == 0) {
-            return "This food item is safe to eat!";
+            return "This food item is safe for you to eat!";
         }
 
-        String outStr = "This food item is NOT safe to eat! It contains the following ingredients:\n";
+        String outStr = "This food item is NOT safe for you to eat! It contains the following ingredients:\n";
         String badIngredients = "";
         for (Map.Entry<String, ArrayList<String>> entry : allergenIngredientsMap.entrySet()) {
             if (badIngredients.equals("")) {
