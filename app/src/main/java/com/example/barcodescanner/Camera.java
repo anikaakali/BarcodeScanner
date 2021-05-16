@@ -17,7 +17,9 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class Camera extends AppCompatActivity {
-    public static final String UPC = "com.example.barcodescanner.MESSAGE";
+    public static final String UPC = "com.example.barcodescanner.MESSAGE1";
+    public static final String ALLERGENSFORWARDED = "com.example.barcodescanner.MESSAGE2";
+    private String allergens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,27 +27,13 @@ public class Camera extends AppCompatActivity {
         setContentView(R.layout.activity_camera1);
 
         Intent intent = getIntent();
-        String allergens = intent.getExtras().getString(MainActivity.ALLERGENS);
+        allergens = intent.getExtras().getString(MainActivity.ALLERGENS);
 
         TextView tvAllergens = findViewById(R.id.tvAllergens);
         tvAllergens.setText(allergens);
         // Scan the barcode.
         scanCode();
     }
-
-    /*
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Intent intent = getIntent();
-        String allergens = intent.getExtras().getString(MainActivity.ALLERGENS);
-
-        TextView tvAllergens = findViewById(R.id.tvAllergens);
-        tvAllergens.setText(allergens);
-        // Scan the barcode.
-        scanCode();
-    }
-    */
 
     // Then unpack string using split function.
     private void scanCode() {
@@ -64,6 +52,7 @@ public class Camera extends AppCompatActivity {
             if (result.getContents() != null) {
                 Intent toResult = new Intent(this, AllergenResult.class);
                 toResult.putExtra(UPC, result.getContents());
+                toResult.putExtra(ALLERGENSFORWARDED, allergens);
                 startActivity(toResult);
             } else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();

@@ -21,10 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String ALLERGENS = "com.example.barcodescanner.MESSAGE";
-    //  public static final String INGREDIENTS = "com.example.barcodescanner.MESSAGE";
-    String jsonData;
-    String singleParsed;
+    public static final String ALLERGENS = "com.example.barcodescanner.MESSAGE1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,30 +47,29 @@ public class MainActivity extends AppCompatActivity {
 
             String selectedAllergens = "";
             if (glutenBool) {
-                selectedAllergens = selectedAllergens + "\nGluten";
+                selectedAllergens = selectedAllergens + "Gluten\n";
             }
             if (peanutsBool) {
-                selectedAllergens = selectedAllergens + "\nPeanuts";
+                selectedAllergens = selectedAllergens + "Peanuts\n";
             }
             if (treeNutsBool) {
-                selectedAllergens = selectedAllergens + "\nTree Nuts";
+                selectedAllergens = selectedAllergens + "Tree Nuts\n";
             }
             if (eggsBool) {
-                selectedAllergens = selectedAllergens + "\nEggs";
+                selectedAllergens = selectedAllergens + "Eggs\n";
             }
             if (milkBool) {
-                selectedAllergens = selectedAllergens + "\nMilk";
+                selectedAllergens = selectedAllergens + "Milk\n";
             }
             if (soyBool) {
-                selectedAllergens = selectedAllergens + "\nSoy";
+                selectedAllergens = selectedAllergens + "Soy\n";
             }
             if (sesameBool) {
-                selectedAllergens = selectedAllergens + "\nSesame";
+                selectedAllergens = selectedAllergens + "Sesame\n";
             }
 
-            String allergensSelected = "Scanning for: \n" + selectedAllergens;
             Intent intent = new Intent(view.getContext(), Camera.class);
-            intent.putExtra(ALLERGENS, allergensSelected);
+            intent.putExtra(ALLERGENS, selectedAllergens);
             startActivity(intent);
         });
     }
